@@ -10,7 +10,7 @@ func TestNewCell(t *testing.T) {
 	}
 }
 
-func TestSetMark(t *testing.T) {
+func TestMark(t *testing.T) {
 	tests := []struct {
 		input1 *Cell
 		input2 string
