@@ -3,10 +3,10 @@ package components
 import "testing"
 
 func TestNewCell(t *testing.T) {
-	want := NewCell()
-	got := NoMark
-	if want.mark != got {
-		t.Error(want.mark, got)
+	want := NoMark
+	got := NewCell()
+	if want != got.mark {
+		t.Error(want, got.mark)
 	}
 }
 
@@ -14,7 +14,7 @@ func TestMark(t *testing.T) {
 	tests := []struct {
 		input1 *Cell
 		input2 string
-		got    bool
+		want   bool
 	}{
 		{&Cell{mark: NoMark}, XMark, true},
 		{&Cell{mark: NoMark}, OMark, true},
@@ -24,9 +24,9 @@ func TestMark(t *testing.T) {
 		{&Cell{mark: OMark}, XMark, false},
 	}
 	for _, test := range tests {
-		want := Mark(test.input1, test.input2)
-		if want != test.got {
-			t.Error(want, test.got)
+		got := Mark(test.input1, test.input2)
+		if test.want != got {
+			t.Error(test.want, got)
 		}
 	}
 }
@@ -34,16 +34,16 @@ func TestMark(t *testing.T) {
 func TestGetMark(t *testing.T) {
 	tests := []struct {
 		input *Cell
-		got   string
+		want  string
 	}{
 		{&Cell{mark: NoMark}, NoMark},
 		{&Cell{mark: OMark}, OMark},
 		{&Cell{mark: XMark}, XMark},
 	}
 	for _, test := range tests {
-		want := GetMark(test.input)
-		if want != test.got {
-			t.Error(want, test.got)
+		got := GetMark(test.input)
+		if test.want != got {
+			t.Error(test.want, got)
 		}
 	}
 
