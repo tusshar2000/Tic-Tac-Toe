@@ -37,8 +37,8 @@ func TestGetMark(t *testing.T) {
 		want  string
 	}{
 		{&Cell{mark: NoMark}, NoMark},
-		{&Cell{mark: OMark}, XMark},
-		{&Cell{mark: XMark}, OMark},
+		{&Cell{mark: OMark}, OMark},
+		{&Cell{mark: XMark}, XMark},
 	}
 	for _, test := range tests {
 		got := GetMark(test.input)
