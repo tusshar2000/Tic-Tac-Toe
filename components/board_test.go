@@ -5,9 +5,9 @@ import (
 )
 
 func TestCreateBoard(t *testing.T) {
-	test := CreateBoard()
-	expected := make([]Cell, 9)
-	if len(test.Cells) != len(expected) {
-		t.Error(test.Cells, expected)
+	want := make([]Cell, 9)
+	got := CreateBoard()
+	if len(want) != len(got.Cells) {
+		t.Error(want,got.Cells)
 	}
 }
