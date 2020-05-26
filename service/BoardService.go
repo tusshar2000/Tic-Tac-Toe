@@ -20,7 +20,7 @@ func (bs *BoardService) Mark(position int, mark string) {
 		if i % (bs.Board.size) == 0 {
 			matrixString += fmt.Sprint("\n\t")
 		}
-		matrixString  += fmt.Sprint(bs.Board.Cells[i].GetMark() " ")
+		matrixString  += fmt.Sprint(bs.Board.Cells[i].GetMark()," ")
 	}
 	return matrixString
 }
