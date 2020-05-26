@@ -10,7 +10,7 @@ func TestNewBoard(t *testing.T) {
 	}{
 		{0, 0, NoMark},
 		{3, 9, NoMark},
-		//-1 uint8 overflow.
+		//-1 uint8 overflow, handled by datatype.
 	}
 	for _, want := range tests {
 		got := NewBoard(want.size).Cells

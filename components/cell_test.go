@@ -14,7 +14,7 @@ func TestMark(t *testing.T) {
 	tests := []struct {
 		cell *Cell
 		mark string
-		want   bool
+		want bool
 	}{
 		{&Cell{mark: NoMark}, XMark, true},
 		{&Cell{mark: NoMark}, OMark, true},
@@ -34,7 +34,7 @@ func TestMark(t *testing.T) {
 func TestGetMark(t *testing.T) {
 	tests := []struct {
 		cell *Cell
-		want  string
+		want string
 	}{
 		{&Cell{mark: NoMark}, NoMark},
 		{&Cell{mark: OMark}, OMark},

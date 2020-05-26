@@ -4,36 +4,25 @@ import (
 	"testing"
 )
 
-func TestPlayerName(t *testing.T) {
+func TestNewPlayer(t *testing.T) {
 	tests := []struct {
 		name string
-	}{
-		{"Tusshar"},
-		{"Opponent"},
-	}
-	for _, test := range tests {
-		var p Player
-		p.SetName(test.name)
-		gotName := p.GetName()
-		if test.name != gotName {
-			t.Error(test.name, gotName)
-		}
-	}
-}
-
-func TestPlayerMark(t *testing.T) {
-	tests := []struct {
 		mark string
 	}{
-		{XMark},
-		{OMark},
+		{"Tusshar", XMark},
+		{"Opponent", OMark},
 	}
 	for _, test := range tests {
-		var p Player
-		p.SetMark(test.mark)
-		gotMark := p.GetMark()
-		if test.mark != gotMark {
-			t.Error(test.mark, gotMark)
+		wantName := test.name
+		wantMark := test.mark
+		testPlayer := NewPlayer(wantName, wantMark)
+		gotName := testPlayer.name
+		gotMark := testPlayer.mark
+		if wantName != gotName {
+			t.Error(wantName, gotName)
+		}
+		if wantMark != gotMark {
+			t.Error(wantMark, gotMark)
 		}
 	}
 }
