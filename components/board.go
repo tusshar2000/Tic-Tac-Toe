@@ -1,42 +1,19 @@
-// package components
-
-// type Board struct {
-// 	Cells []Cell
-// }
-
-// func NewBoard() *Board {
-// 	myBoard := CreateBoard()
-// 	for i := range myBoard.Cells {
-// 		myBoard.Cells[i] = myBoard.NewCell()
-// 	}
-// 	return &myBoard
-// }
-
-// func CreateBoard() *Board {
-// 	rows := 3 //can take input for this
-// 	new = make(Board, rows)
-// 	return &new
-// }
 package components
 
 type Board struct {
-	Cells []Cell
+	Cells []*Cell
+	Size  uint8
 }
 
-func NewBoard() *Board {
-	//matrixSize := 9
-	new := CreateBoard()
-	for i := range new.Cells {
-		new.Cells[i] = *NewCell()
+func NewBoard(size uint8) *Board {
+	size *= size
+	var cellArray = make([]*Cell, size)
+	cellArray = make([]*Cell, size)
+	for i := range cellArray {
+		cellArray[i] = NewCell()
 	}
-	return new
-}
-
-func CreateBoard() *Board {
-	new := Board{}
-	// if matrixSize <= 0 {
-	// 	nil,fmt.Println("Matrix needs a positive number.")
-	// }
-	new.Cells = make([]Cell, 9)
-	return &new
+	return &Board{
+		Cells: cellArray,
+		Size:  size,
+	}
 }

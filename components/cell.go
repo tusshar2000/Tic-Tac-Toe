@@ -14,7 +14,7 @@ func NewCell() *Cell {
 	return &Cell{mark: NoMark}
 }
 
-func Mark(cell *Cell, mark string) bool {
+func (cell *Cell) SetMark(mark string) bool {
 	if cell.mark == NoMark {
 		cell.mark = mark
 		return true
@@ -22,6 +22,6 @@ func Mark(cell *Cell, mark string) bool {
 	return false
 }
 
-func GetMark(cell *Cell) string {
+func (cell *Cell) GetMark() string {
 	return cell.mark
 }
