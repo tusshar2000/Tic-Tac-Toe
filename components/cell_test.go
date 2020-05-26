@@ -12,8 +12,8 @@ func TestNewCell(t *testing.T) {
 
 func TestMark(t *testing.T) {
 	tests := []struct {
-		input1 *Cell
-		input2 string
+		cell *Cell
+		mark string
 		want   bool
 	}{
 		{&Cell{mark: NoMark}, XMark, true},
@@ -24,7 +24,7 @@ func TestMark(t *testing.T) {
 		{&Cell{mark: OMark}, XMark, false},
 	}
 	for _, test := range tests {
-		got, _ := test.input1.SetMark(test.input2)
+		got, _ := test.cell.SetMark(test.mark)
 		if test.want != got {
 			t.Error(test.want, got)
 		}
