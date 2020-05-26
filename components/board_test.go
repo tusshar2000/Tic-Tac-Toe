@@ -1,13 +1,30 @@
 package components
 
-import (
-	"testing"
-)
+import "testing"
 
-func TestCreateBoard(t *testing.T) {
-	want := make([]Cell, 9)
-	got := CreateBoard()
-	if len(want) != len(got.Cells) {
-		t.Error(want,got.Cells)
+func TestNewBoard(t *testing.T) {
+	tests := []struct {
+		size       uint8
+		matrixSize uint8
+		mark       string
+	}{
+		{0, 0, NoMark},
+		{3, 9, NoMark},
+		//-1 uint8 overflow.
 	}
+	for _, want := range tests {
+		got := NewBoard(want.size).Cells
+		gotMatrixSize := uint8(len(got))
+		if want.matrixSize != gotMatrixSize {
+			t.Error(want.matrixSize, gotMatrixSize)
+		}
+		for _, cell := range got {
+			gotMark := cell.mark
+			if want.mark != gotMark {
+				t.Error(want.mark, gotMark)
+			}
+
+		}
+	}
+
 }

@@ -24,7 +24,7 @@ func TestMark(t *testing.T) {
 		{&Cell{mark: OMark}, XMark, false},
 	}
 	for _, test := range tests {
-		got := test.input1.SetMark(test.input2)
+		got, _ := test.input1.SetMark(test.input2)
 		if test.want != got {
 			t.Error(test.want, got)
 		}
