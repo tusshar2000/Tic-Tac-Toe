@@ -33,7 +33,7 @@ func TestMark(t *testing.T) {
 
 func TestGetMark(t *testing.T) {
 	tests := []struct {
-		input *Cell
+		cell *Cell
 		want  string
 	}{
 		{&Cell{mark: NoMark}, NoMark},
@@ -41,7 +41,7 @@ func TestGetMark(t *testing.T) {
 		{&Cell{mark: XMark}, XMark},
 	}
 	for _, test := range tests {
-		got := test.input.GetMark()
+		got := test.cell.GetMark()
 		if test.want != got {
 			t.Error(test.want, got)
 		}
