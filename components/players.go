@@ -11,3 +11,7 @@ func NewPlayer(name, mark string) *Player {
 		mark: mark,
 	}
 }
+
+func (p *Player) GetMark() string {
+	return p.mark
+}

@@ -1,19 +1,22 @@
-package components
+package service
 
-import "testing"
+import (
+	"Tic-Tac-Toe/components"
+	"testing"
+)
 
-func TestNewBoard(t *testing.T) {
+func TestNewBoardService(t *testing.T) {
 	tests := []struct {
 		size       uint8
 		matrixSize uint8
 		mark       string
 	}{
-		{0, 0, NoMark},
-		{3, 9, NoMark},
+		{0, 0, components.NoMark},
+		{3, 9, components.NoMark},
 		//-1 uint8 overflow, handled by datatype.
 	}
 	for _, want := range tests {
-		got := NewBoard(want.size).Cells
+		got := components.NewBoard(want.size).Cells
 		gotMatrixSize := uint8(len(got))
 		if want.matrixSize != gotMatrixSize {
 			t.Error(want.matrixSize, gotMatrixSize)
@@ -28,3 +31,11 @@ func TestNewBoard(t *testing.T) {
 	}
 
 }
+
+// func TestPutMarkInPosition(t *testing.T){
+// 	tests := []struct {
+// 		player     components.Player
+// 		position
+// 		mark       string
+// 	}
+// }
