@@ -40,7 +40,7 @@ func TestPutMarkInPosition(t *testing.T) {
 		wantPosition uint8
 		wantError    error
 	}{
-		{*NewBoardService(2), components.Player{Name: "Tusshar", Mark: components.XMark}, 1, errors.New("Cell is already marked.")},
+		{*NewBoardService(2), components.Player{Name: "Tusshar", Mark: components.XMark}, 1, nil},
 		{BoardService{&components.Board{
 			Cells: []*components.Cell{
 				&components.Cell{Mark: components.XMark},
@@ -55,7 +55,7 @@ func TestPutMarkInPosition(t *testing.T) {
 
 	for _, test := range tests {
 		got := test.wantBoard.PutMarkInPosition(test.wantPlayer, test.wantPosition)
-		if got != nil {
+		if test.wantError != nil || got != nil {
 			if got.Error() != test.wantError.Error() {
 				t.Error(got, test.wantError)
 			}

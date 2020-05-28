@@ -28,7 +28,7 @@ func TestMark(t *testing.T) {
 	}
 	for _, test := range tests {
 		got := test.cell.SetMark(test.mark)
-		if test.want != nil {
+		if test.want != nil || got != nil {
 			if test.want.Error() != got.Error() {
 				t.Error(test.want, got)
 			}
