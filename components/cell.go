@@ -18,7 +18,7 @@ func NewCell() *Cell {
 	return &Cell{Mark: NoMark}
 }
 
-func (cell *Cell) SetMark(mark string) (err error) {
+func (cell *Cell) SetMark(mark string) error {
 	if cell.Mark == NoMark {
 		cell.Mark = mark
 		return nil
