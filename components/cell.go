@@ -5,27 +5,27 @@ import (
 )
 
 type Cell struct {
-	mark string
+	Mark string
 }
 
 const (
-	NoMark = " "
+	NoMark = "-"
 	XMark  = "X"
 	OMark  = "O"
 )
 
 func NewCell() *Cell {
-	return &Cell{mark: NoMark}
+	return &Cell{Mark: NoMark}
 }
 
-func (cell *Cell) SetMark(mark string) (bool, error) {
-	if cell.mark == NoMark {
-		cell.mark = mark
-		return true, nil
+func (cell *Cell) SetMark(mark string) error {
+	if cell.Mark == NoMark {
+		cell.Mark = mark
+		return nil
 	}
-	return false, errors.New("Cell is already marked.")
+	return errors.New("Cell is already marked.")
 }
 
 func (cell *Cell) GetMark() string {
-	return cell.mark
+	return cell.Mark
 }

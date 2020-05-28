@@ -1,12 +1,15 @@
 package components
 
-import "testing"
+import (
+	"errors"
+	"testing"
+)
 
 func TestNewCell(t *testing.T) {
 	want := NoMark
 	got := NewCell()
-	if want != got.mark {
-		t.Error(want, got.mark)
+	if want != got.Mark {
+		t.Error(want, got.Mark)
 	}
 }
 
@@ -14,19 +17,21 @@ func TestMark(t *testing.T) {
 	tests := []struct {
 		cell *Cell
 		mark string
-		want bool
+		want error
 	}{
-		{&Cell{mark: NoMark}, XMark, true},
-		{&Cell{mark: NoMark}, OMark, true},
-		{&Cell{mark: XMark}, OMark, false},
-		{&Cell{mark: XMark}, XMark, false},
-		{&Cell{mark: OMark}, OMark, false},
-		{&Cell{mark: OMark}, XMark, false},
+		{&Cell{Mark: NoMark}, XMark, nil},
+		{&Cell{Mark: NoMark}, OMark, nil},
+		{&Cell{Mark: XMark}, OMark, errors.New("Cell is already marked.")},
+		{&Cell{Mark: XMark}, XMark, errors.New("Cell is already marked.")},
+		{&Cell{Mark: OMark}, OMark, errors.New("Cell is already marked.")},
+		{&Cell{Mark: OMark}, XMark, errors.New("Cell is already marked.")},
 	}
 	for _, test := range tests {
-		got, _ := test.cell.SetMark(test.mark)
-		if test.want != got {
-			t.Error(test.want, got)
+		got := test.cell.SetMark(test.mark)
+		if test.want != nil {
+			if test.want.Error() != got.Error() {
+				t.Error(test.want, got)
+			}
 		}
 	}
 }
@@ -36,9 +41,9 @@ func TestGetMark(t *testing.T) {
 		cell *Cell
 		want string
 	}{
-		{&Cell{mark: NoMark}, NoMark},
-		{&Cell{mark: OMark}, OMark},
-		{&Cell{mark: XMark}, XMark},
+		{&Cell{Mark: NoMark}, NoMark},
+		{&Cell{Mark: OMark}, OMark},
+		{&Cell{Mark: XMark}, XMark},
 	}
 	for _, test := range tests {
 		got := test.cell.GetMark()

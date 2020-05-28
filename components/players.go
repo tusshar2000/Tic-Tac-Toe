@@ -1,17 +1,13 @@
 package components
 
 type Player struct {
-	name string
-	mark string
+	Name string
+	Mark string
 }
 
 func NewPlayer(name, mark string) *Player {
 	return &Player{
-		name: name,
-		mark: mark,
+		Name: name,
+		Mark: mark,
 	}
-}
-
-func (p *Player) GetMark() string {
-	return p.mark
 }

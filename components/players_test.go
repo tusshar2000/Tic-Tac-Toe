@@ -16,8 +16,8 @@ func TestNewPlayer(t *testing.T) {
 		wantName := test.name
 		wantMark := test.mark
 		testPlayer := NewPlayer(wantName, wantMark)
-		gotName := testPlayer.name
-		gotMark := testPlayer.mark
+		gotName := testPlayer.Name
+		gotMark := testPlayer.Mark
 		if wantName != gotName {
 			t.Error(wantName, gotName)
 		}

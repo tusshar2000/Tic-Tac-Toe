@@ -6,9 +6,9 @@ type Board struct {
 }
 
 func NewBoard(size uint8) *Board {
-	size *= size
-	var cellArray = make([]*Cell, size)
-	cellArray = make([]*Cell, size)
+	BoardSize := size * size
+	var cellArray = make([]*Cell, BoardSize)
+	cellArray = make([]*Cell, BoardSize)
 	for i := range cellArray {
 		cellArray[i] = NewCell()
 	}

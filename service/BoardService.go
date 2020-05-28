@@ -14,11 +14,8 @@ func NewBoardService(size uint8) *BoardService {
 }
 
 func (bs *BoardService) PutMarkInPosition(p components.Player, position uint8) error {
-	_, err := bs.Board.Cells[position].SetMark(p.GetMark())
-	if err != nil {
-		return err
-	}
-	return nil
+	err := bs.Board.Cells[position].SetMark(p.Mark)
+	return err
 }
 
 func (bs *BoardService) PrintBoard() string {
@@ -26,7 +23,7 @@ func (bs *BoardService) PrintBoard() string {
 	//bs.Board.Cells[position].SetMark(mark)
 	boardSize := uint8(len(bs.Board.Cells))
 	for i := uint8(0); i < (boardSize); i++ {
-		if i%(boardSize) == 0 {
+		if i%(bs.Board.Size) == 0 {
 			matrixString += fmt.Sprint("\n\t")
 		}
 		matrixString += fmt.Sprint(bs.Board.Cells[i].GetMark(), " ")
