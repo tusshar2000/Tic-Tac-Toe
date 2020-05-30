@@ -14,8 +14,6 @@ func NewResultService(bs *BoardService) *ResultService {
 
 func (rs *ResultService) checkRow(mark string) bool {
 	count := 0
-	for i := uint8(0); i < rs.Size; i++ {
-	}
 	for i := 0; i < int(rs.Size*rs.Size); i++ {
 		if rs.Board.Cells[i].GetMark() == mark {
 			count++
