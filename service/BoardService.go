@@ -9,8 +9,8 @@ type BoardService struct {
 	*components.Board
 }
 
-func NewBoardService(size uint8) *BoardService {
-	return &BoardService{components.NewBoard(size)}
+func NewBoardService(board *components.Board) *BoardService {
+	return &BoardService{board}
 }
 
 func (bs *BoardService) PutMarkInPosition(p components.Player, position uint8) error {

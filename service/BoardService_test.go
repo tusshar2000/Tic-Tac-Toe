@@ -6,42 +6,15 @@ import (
 	"testing"
 )
 
-func TestNewBoardService(t *testing.T) {
-	tests := []struct {
-		size       uint8
-		matrixSize uint8
-		mark       string
-	}{
-		{0, 0, components.NoMark},
-		{3, 9, components.NoMark},
-		//-1 uint8 overflow, handled by datatype.
-	}
-	for _, want := range tests {
-		got := NewBoardService(want.size)
-		gotMatrixSize := uint8(len(got.Cells))
-		if want.matrixSize != gotMatrixSize {
-			t.Error(want.matrixSize, gotMatrixSize)
-		}
-		for _, cell := range got.Cells {
-			gotMark := cell.GetMark()
-			if want.mark != gotMark {
-				t.Error(want.mark, gotMark)
-			}
-
-		}
-	}
-
-}
-
 func TestPutMarkInPosition(t *testing.T) {
 	tests := []struct {
-		wantBoard    BoardService
+		wantBoard    *BoardService
 		wantPlayer   components.Player
 		wantPosition uint8
 		wantError    error
 	}{
-		{*NewBoardService(2), components.Player{Name: "Tusshar", Mark: components.XMark}, 1, nil},
-		{BoardService{&components.Board{
+		{&BoardService{components.NewBoard(uint8(3))}, components.Player{Name: "Tusshar", Mark: components.XMark}, 1, nil},
+		{&BoardService{&components.Board{
 			Cells: []*components.Cell{
 				&components.Cell{Mark: components.XMark},
 				&components.Cell{Mark: components.XMark},
@@ -68,7 +41,7 @@ func TestPrintBoard(t *testing.T) {
 		wantBoard        *BoardService
 		wantMatrixString string
 	}{
-		{NewBoardService(4), "\n\t- - - - \n\t- - - - \n\t- - - - \n\t- - - - "},
+		{&BoardService{components.NewBoard(uint8(4))}, "\n\t- - - - \n\t- - - - \n\t- - - - \n\t- - - - "},
 		{&BoardService{&components.Board{
 			Cells: []*components.Cell{
 				&components.Cell{Mark: components.NoMark},
@@ -93,7 +66,7 @@ func TestCheckBoardIsFull(t *testing.T) {
 		wantBoard *BoardService
 		want      bool
 	}{
-		{NewBoardService(3), false},
+		{&BoardService{components.NewBoard(uint8(3))}, false},
 		{&BoardService{&components.Board{
 			Cells: []*components.Cell{
 				&components.Cell{Mark: components.NoMark},
