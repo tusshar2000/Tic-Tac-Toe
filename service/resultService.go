@@ -14,14 +14,14 @@ func NewResultService(bs *BoardService) *ResultService {
 
 func (rs *ResultService) checkRow(mark string) bool {
 	count := 0
-	for i := 0; i < int(rs.Size*rs.Size); i++ {
+	for i := uint8(0); i < rs.Size*rs.Size; i++ {
 		if rs.Board.Cells[i].GetMark() == mark {
 			count++
 		}
 		if count == int(rs.Size) {
 			return true
 		}
-		if (i+1)%int(rs.Size) == 0 {
+		if (i+1)%(rs.Size) == 0 {
 			count = 0
 		}
 	}
