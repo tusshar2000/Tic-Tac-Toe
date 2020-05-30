@@ -13,15 +13,16 @@ func NewResultService(bs *BoardService) *ResultService {
 }
 
 func (rs *ResultService) checkRow(mark string) bool {
+	size := rs.Size
 	count := 0
-	for i := uint8(0); i < rs.Size*rs.Size; i++ {
+	for i := uint8(0); i < size*size; i++ {
 		if rs.Board.Cells[i].GetMark() == mark {
 			count++
 		}
-		if count == int(rs.Size) {
+		if count == int(size) {
 			return true
 		}
-		if (i+1)%(rs.Size) == 0 {
+		if (i+1)%(size) == 0 {
 			count = 0
 		}
 	}
@@ -29,14 +30,15 @@ func (rs *ResultService) checkRow(mark string) bool {
 }
 
 func (rs *ResultService) checkColumn(mark string) bool {
-	for i := uint8(0); i < rs.Size; i++ {
+	size := rs.Size
+	for i := uint8(0); i < size; i++ {
 		count := 0
-		for j := i; j <= (rs.Size*rs.Size)-(rs.Size-i); j += rs.Size {
+		for j := i; j <= (size*size)-(size-i); j += size {
 			if rs.Board.Cells[j].GetMark() == mark {
 				count++
 			}
-			//fmt.Println(j, count, count == int(rs.Size))
-			if count == int(rs.Size) {
+			//fmt.Println(j, count, count == int(size))
+			if count == int(size) {
 				return true
 			}
 		}
