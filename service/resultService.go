@@ -17,7 +17,7 @@ func NewResultService(bs *BoardService) *ResultService {
 	return &ResultService{bs}
 }
 
-func (rs *ResultService) CheckRow(mark string) bool {
+func (rs *ResultService) checkRow(mark string) bool {
 	size := rs.Size
 	count := 0
 	for i := uint8(0); i < size*size; i++ {
@@ -34,7 +34,7 @@ func (rs *ResultService) CheckRow(mark string) bool {
 	return false
 }
 
-func (rs *ResultService) CheckColumn(mark string) bool {
+func (rs *ResultService) checkColumn(mark string) bool {
 	size := rs.Size
 	for i := uint8(0); i < size; i++ {
 		count := 0
@@ -51,7 +51,7 @@ func (rs *ResultService) CheckColumn(mark string) bool {
 	return false
 }
 
-func (rs *ResultService) CheckFirstDiagonal(mark string) bool {
+func (rs *ResultService) checkFirstDiagonal(mark string) bool {
 	size := rs.Size
 	for i := uint8(0); i < size; i++ {
 		if rs.Board.Cells[size*i+i].GetMark() != mark {
@@ -63,7 +63,7 @@ func (rs *ResultService) CheckFirstDiagonal(mark string) bool {
 	return true
 }
 
-func (rs *ResultService) CheckSecondDiagonal(mark string) bool {
+func (rs *ResultService) checkSecondDiagonal(mark string) bool {
 	size := rs.Size
 	for i := uint8(0); i < size; i++ {
 		if rs.Board.Cells[(size*i)+(size-1-i)].GetMark() != mark {
@@ -74,13 +74,13 @@ func (rs *ResultService) CheckSecondDiagonal(mark string) bool {
 }
 
 func (rs *ResultService) GetResult(mark string) Result {
-	if rs.CheckRow(mark) {
+	if rs.checkRow(mark) {
 		return Result{true, false}
-	} else if rs.CheckColumn(mark) {
+	} else if rs.checkColumn(mark) {
 		return Result{true, false}
-	} else if rs.CheckFirstDiagonal(mark) {
+	} else if rs.checkFirstDiagonal(mark) {
 		return Result{true, false}
-	} else if rs.CheckSecondDiagonal(mark) {
+	} else if rs.checkSecondDiagonal(mark) {
 		return Result{true, false}
 	} else if rs.CheckBoardIsFull() {
 		return Result{false, true}
