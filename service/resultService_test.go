@@ -31,7 +31,7 @@ func TestCheckRows(t *testing.T) {
 	}
 
 	for _, test := range tests {
-		got := test.rs.checkRow(test.mark)
+		got := test.rs.CheckRow(test.mark)
 		if test.want != got {
 			t.Error(test.want, got)
 		}
@@ -63,7 +63,7 @@ func TestCheckColumns(t *testing.T) {
 	}
 
 	for _, test := range tests {
-		got := test.rs.checkColumn(test.mark)
+		got := test.rs.CheckColumn(test.mark)
 		if test.want != got {
 			t.Error(test.want, got)
 		}
@@ -95,8 +95,8 @@ func TestCheckFirstDiagonal(t *testing.T) {
 	}
 
 	for _, test := range tests {
-		got := test.rs.checkFirstDiagonal(test.mark)
-		test.rs.checkFirstDiagonal(test.mark)
+		got := test.rs.CheckFirstDiagonal(test.mark)
+		test.rs.CheckFirstDiagonal(test.mark)
 		// fmt.Println(test.want,got)
 		if test.want != got {
 			t.Error(test.want, got)
@@ -129,8 +129,8 @@ func TestCheckSecondDiagonal(t *testing.T) {
 	}
 
 	for _, test := range tests {
-		got := test.rs.checkSecondDiagonal(test.mark)
-		test.rs.checkSecondDiagonal(test.mark)
+		got := test.rs.CheckSecondDiagonal(test.mark)
+		test.rs.CheckSecondDiagonal(test.mark)
 		// fmt.Println(test.want,got)
 		if test.want != got {
 			t.Error(test.want, got)

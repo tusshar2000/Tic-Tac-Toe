@@ -27,7 +27,8 @@ func TestPutMarkInPosition(t *testing.T) {
 	}
 
 	for _, test := range tests {
-		got := test.wantBoard.PutMarkInPosition(test.wantPlayer, test.wantPosition)
+		got := test.wantBoard.PutMarkInPosition(&test.wantPlayer, test.wantPosition)
+		// fmt.Println(test.wantBoard.PrintBoard())
 		if test.wantError != nil || got != nil {
 			if got.Error() != test.wantError.Error() {
 				t.Error(got, test.wantError)

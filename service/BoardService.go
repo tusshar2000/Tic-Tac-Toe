@@ -13,7 +13,7 @@ func NewBoardService(board *components.Board) *BoardService {
 	return &BoardService{board}
 }
 
-func (bs *BoardService) PutMarkInPosition(p components.Player, position uint8) error {
+func (bs *BoardService) PutMarkInPosition(p *components.Player, position uint8) error {
 	err := bs.Board.Cells[position].SetMark(p.Mark)
 	return err
 }
