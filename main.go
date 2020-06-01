@@ -123,15 +123,15 @@ func main() {
 			index, err := strconv.Atoi(indexNow)
 			if err != nil {
 				fmt.Println(err)
-				continue
 				flag = 1
+				continue
 			}
 			// fmt.Println("hdh")
 			result, err = ourGameService.Play(uint8(index))
 			if err != nil {
 				fmt.Println(err)
-				continue
 				flag = 1
+				continue
 			}
 			if flag == 0 {
 				break
