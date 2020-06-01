@@ -20,7 +20,7 @@ func main() {
 		sizeNow = strings.TrimSpace(sizeNow)
 		size, err := strconv.Atoi(sizeNow)
 		// fmt.Println(size)
-		if err != nil || size > 4 || size < 2 {
+		if err != nil || size < 2 {
 			fmt.Println("Please enter a valid number")
 			flag = 1
 		}
@@ -36,7 +36,6 @@ func main() {
 	name1 = strings.TrimSpace(name1)
 	fmt.Println("Select mark 'X' or 'O'.")
 	for {
-		mark1 := ""
 		flag := 0
 		mark1, err := reader.ReadString('\n')
 		if err != nil {
@@ -84,17 +83,19 @@ func main() {
 			fmt.Println(player1.Name, "enter your position:")
 			indexNow, _ := reader.ReadString('\n')
 			indexNow = strings.TrimSpace(indexNow)
-			index1, err := strconv.Atoi(indexNow)
+			index, err := strconv.Atoi(indexNow)
 			if err != nil {
 				fmt.Println(err)
 				flag = 1
+				continue
 			}
 			// fmt.Println(reflect.TypeOf(index1))
-			index := uint8(index1)
+
 			result, err = ourGameService.Play(uint8(index))
 			if err != nil {
 				fmt.Println(err)
 				flag = 1
+				continue
 			}
 			if flag == 0 {
 				break
@@ -122,12 +123,14 @@ func main() {
 			index, err := strconv.Atoi(indexNow)
 			if err != nil {
 				fmt.Println(err)
+				continue
 				flag = 1
 			}
 			// fmt.Println("hdh")
 			result, err = ourGameService.Play(uint8(index))
 			if err != nil {
 				fmt.Println(err)
+				continue
 				flag = 1
 			}
 			if flag == 0 {
@@ -150,5 +153,3 @@ func main() {
 		}
 	}
 }
-
-
