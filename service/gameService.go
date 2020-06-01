@@ -1,9 +1,3 @@
-// GameService will have a Play method! It will take the position & return result,error
-// It will also handle how players are switched after every turn
-// This is also known as a facade (It actually does nothing but coordinates with other components and services)
-// Finish till ResultServiceTest first!
-// Then GameService & then Test
-
 package service
 
 import (
