@@ -151,10 +151,4 @@ func main() {
 	}
 }
 
-// func getError(err error)bool{
-// 	if err!=nil{
-// 		fmt.Println(err)
-// 		true
-// 	}
-// 	false
-// }
+
